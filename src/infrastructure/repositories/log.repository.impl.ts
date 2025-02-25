@@ -1,7 +1,6 @@
 // import { LogRepository } from '../../domain/repository/log.repository';
 import { LogDatasource } from '../../domain/datasources/log.datasoruce';
-import { LogSeverityLevel } from '../../domain/entities/log-severity-level.enum';
-import { LogEntity } from '../../domain/entities/log.entity';
+import { LogEntity, LogSeverityLevel } from '../../domain/entities';
 import { LogRepository } from '../../domain/repository/log.repository';
 
 

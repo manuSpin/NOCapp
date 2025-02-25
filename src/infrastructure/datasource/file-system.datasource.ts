@@ -1,7 +1,7 @@
 import { LogDatasource } from "../../domain/datasources/log.datasoruce";
-import { LogSeverityLevel } from "../../domain/entities/log-severity-level.enum";
-import { LogEntity } from "../../domain/entities/log.entity";
+
 import fs from 'fs';
+import { LogEntity, LogSeverityLevel } from "../../domain/entities";
 
 export class FileSystemDataSource implements LogDatasource {
 
@@ -31,7 +31,7 @@ export class FileSystemDataSource implements LogDatasource {
 
     public async saveLog(newLog: LogEntity): Promise<void> {
         const logAsJson = `${JSON.stringify(newLog)}\n`;
-
+        
         if (newLog.level === LogSeverityLevel.medium) {
             fs.appendFileSync(this.mediumLongsPath, logAsJson);
 

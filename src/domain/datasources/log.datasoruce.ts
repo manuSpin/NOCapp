@@ -1,5 +1,5 @@
-import { LogSeverityLevel } from "../entities/log-severity-level.enum";
-import { LogEntity } from "../entities/log.entity";
+import { LogEntity, LogSeverityLevel } from "../entities";
+
 
 export abstract class LogDatasource {
     abstract saveLog(log: LogEntity): Promise<void>;
