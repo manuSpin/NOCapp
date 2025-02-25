@@ -1,4 +1,3 @@
-import { envs } from "./plugins/envs.plugin";
 import { Server } from "./presentation/server";
 
 
