@@ -15,6 +15,8 @@ export class LogEntity {
     }
 
     public static fromJson = (json: string): LogEntity => {
+        json = (json === '') ? '{}' : json;
+
         const { message, level, createdAt, origin } = JSON.parse(json);
 
         if (!message) {
@@ -28,7 +30,7 @@ export class LogEntity {
         if (!origin) {
             throw new Error('El origen es obligatorio');
         }
-       
+
 
         const options = {
             message: message,
@@ -38,6 +40,14 @@ export class LogEntity {
         }
 
         const log = new LogEntity(options);
+
+        return log;
+    }
+
+    public static fromObject = (object: { [key: string]: any }): LogEntity => {
+        const { message, level, createdAt, origin } = object;
+
+        const log = new LogEntity({ message, level, createdAt, origin });
 
         return log;
     }

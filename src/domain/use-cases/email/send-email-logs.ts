@@ -35,7 +35,7 @@ export class SendEmailLogs implements SendLogEmailUseCase {
     }
 
     private createLog(message: string, severityLevel: LogSeverityLevel): void {
-        const log = new LogEntity({message: message, level: severityLevel, origin: SendEmailLogs.filename});
+        const log = new LogEntity({ message: message, level: severityLevel, origin: SendEmailLogs.filename });
 
         this.logRepository.saveLog(log);
     }
