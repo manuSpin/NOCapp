@@ -1,5 +1,5 @@
 // import { LogRepository } from '../../domain/repository/log.repository';
-import { LogDatasource } from '../../domain/datasources/log.datasoruce';
+import { LogDatasource } from '../../domain/datasources/log.datasource';
 import { LogEntity, LogSeverityLevel } from '../../domain/entities';
 import { LogRepository } from '../../domain/repository/log.repository';
 

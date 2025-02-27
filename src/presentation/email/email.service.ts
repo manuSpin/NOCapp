@@ -1,8 +1,6 @@
 import nodemailer from 'nodemailer';
-import { envs } from '../../plugins/envs.plugin';
-import { env } from 'process';
-import { Attachement, LogEntity, LogSeverityLevel, SendMailOptions } from '../../domain/entities';
-import { LogRepository } from '../../domain/repository/log.repository';
+import { Attachement, SendMailOptions } from '../../domain/entities';
+import { envs } from '../../config/plugins/envs.plugin';
 
 export class EmailService {
 
@@ -14,7 +12,6 @@ export class EmailService {
             pass: envs.MAILER_SECRET_KEY
         }
     });
-    private static readonly filename = 'email.service.ts';
 
     constructor() { }
 
@@ -31,7 +28,7 @@ export class EmailService {
             });
 
             console.log(sentInformation);
-            
+
             return true;
         } catch (error) {
             console.log('Error', error);
@@ -53,6 +50,6 @@ export class EmailService {
             { filename: 'logs-high.log', path: './logs/logs-high.log' },
         ];
 
-        return this.sendEmail({to, subject, attachments, htmlBody});
+        return this.sendEmail({ to, subject, attachments, htmlBody });
     }
 }

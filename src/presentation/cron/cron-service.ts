@@ -11,8 +11,4 @@ export class CronService {
 
         return job;
     }
-
-    public static stopJob(job: CronJob) {
-        job.stop();
-    }
 }

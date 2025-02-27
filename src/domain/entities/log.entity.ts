@@ -19,18 +19,7 @@ export class LogEntity {
 
         const { message, level, createdAt, origin } = JSON.parse(json);
 
-        if (!message) {
-            throw new Error('El mensaje es obligatorio');
-        }
-
-        if (!level) {
-            throw new Error('El nivel de seguridad es obligatorio');
-        }
-
-        if (!origin) {
-            throw new Error('El origen es obligatorio');
-        }
-
+        console.log(json);
 
         const options = {
             message: message,

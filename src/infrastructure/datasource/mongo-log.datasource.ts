@@ -1,5 +1,5 @@
 import { LogModel } from "../../data/mongo";
-import { LogDatasource } from "../../domain/datasources/log.datasoruce";
+import { LogDatasource } from "../../domain/datasources/log.datasource";
 import { LogEntity, LogSeverityLevel } from "../../domain/entities";
 
 export class MongoLogDatasource implements LogDatasource {
@@ -12,7 +12,6 @@ export class MongoLogDatasource implements LogDatasource {
     public async getLogs(severyLevel: LogSeverityLevel): Promise<LogEntity[]> {
         const logs = await LogModel.find({ level: severyLevel });
 
-        
         // return logs.map(LogEntity.fromObject);
         return logs.map(mongoLog => LogEntity.fromObject(mongoLog));
     }

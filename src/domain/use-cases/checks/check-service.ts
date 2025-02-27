@@ -37,6 +37,7 @@ export class CheckService implements CheckServiceUseCase {
             return true;
             
         } catch (error) {
+            console.log(error);
             const messageError = `${url} is not ok. Reason: ${error}`;
             this.createLog(messageError, LogSeverityLevel.high);
             this.errorCallback(messageError);

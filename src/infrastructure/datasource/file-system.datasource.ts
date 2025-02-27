@@ -1,12 +1,11 @@
-import { LogDatasource } from "../../domain/datasources/log.datasoruce";
-
+import { LogDatasource } from '../../domain/datasources/log.datasource';
 import fs from 'fs';
 import { LogEntity, LogSeverityLevel } from "../../domain/entities";
 
 export class FileSystemDataSource implements LogDatasource {
 
     private readonly logPath = 'logs/';
-    private readonly allLongsPath = 'logs/logs-low.log';
+    private readonly allLongsPath = 'logs/logs-all.log';
     private readonly mediumLongsPath = 'logs/logs-medium.log';
     private readonly highLongsPath = 'logs/logs-high.log';
 
@@ -28,7 +27,6 @@ export class FileSystemDataSource implements LogDatasource {
         });
     }
 
-
     public async saveLog(newLog: LogEntity): Promise<void> {
         const logAsJson = `${JSON.stringify(newLog)}\n`;
 
@@ -37,10 +35,9 @@ export class FileSystemDataSource implements LogDatasource {
 
         } else if (newLog.level === LogSeverityLevel.high) {
             fs.appendFileSync(this.highLongsPath, logAsJson);
-
-        } else {
-            fs.appendFileSync(this.allLongsPath, logAsJson);
         }
+        
+        fs.appendFileSync(this.allLongsPath, logAsJson);
     }
 
     private getLogFromFile = (path: string): LogEntity[] => {
@@ -49,9 +46,9 @@ export class FileSystemDataSource implements LogDatasource {
         if (content === '') {
             return [];
         }
-
+        
         const logs = content.split('\n').map(log => LogEntity.fromJson(log));
-
+        
         return logs;
     }
 
